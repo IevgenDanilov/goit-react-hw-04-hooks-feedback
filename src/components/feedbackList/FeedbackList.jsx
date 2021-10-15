@@ -15,7 +15,6 @@ const FeedbackList = () => {
   const onLeaveFeedback = (e) => {
     e.preventDefault();
     const currentStateName = e.currentTarget.name;
-    console.log(currentStateName);
     setFeedback((prevState) => ({
       ...prevState,
       [currentStateName]: prevState[currentStateName] + 1,
@@ -36,7 +35,6 @@ const FeedbackList = () => {
 
   const { good, neutral, bad } = feedback;
   const options = Object.keys(feedback);
-  console.log(options);
 
   return (
     <div>
