@@ -1,5 +1,5 @@
-import React, { Component, useState } from "react";
-import styles from "./FeedbackList.module.scss";
+import React, { useState } from "react";
+// import styles from "./FeedbackList.module.scss";
 import Statistics from "../statistics/Statistics.jsx";
 import FeedbackOptions from "../feedbackOptions/FeedbackOptions.jsx";
 import Section from "../section/Section.jsx";
@@ -33,9 +33,15 @@ const FeedbackList = () => {
     return positivePercentage;
   };
 
-  const { good, neutral, bad } = feedback;
-  const options = Object.keys(feedback);
+  // НЕ ВПЕВНЕНИЙ, ЩО ЦЯ КОНСТРУКЦІЯ КРАЩА АЛЕ ЗРОБИВ ЯК ТИ ПРОСИВ
 
+  // const { good, neutral, bad } = feedback;
+  const options = Object.keys(feedback);
+  const optionsValue = Object.values(feedback);
+  const total = countTotalFeedback();
+
+  // console.log(options);
+  // console.log(optionsValue);
   return (
     <div>
       <Section title="Please leave feedback">
@@ -43,12 +49,14 @@ const FeedbackList = () => {
       </Section>
 
       <Section title="Statistics">
-        {countTotalFeedback() ? (
+        {total ? (
           <Statistics
-            good={good}
-            neutral={neutral}
-            bad={bad}
-            total={countTotalFeedback()}
+            options={options}
+            optionsValue={optionsValue}
+            // good={good}
+            // neutral={neutral}
+            // bad={bad}
+            total={total}
             positivePercentage={countPositiveFeedbackPercentage()}
           />
         ) : (
